@@ -145,7 +145,7 @@ void load(const char *p) {
     }
 }
 
-int save(int q) {
+int save(char *p, int q) {
     
     if(!TOP)
         return 0;
@@ -165,7 +165,8 @@ int save(int q) {
         }
     }
     
-    FILE *f = fopen("bin_output", "wb");
+    //FILE *f = fopen("output", "wb");
+    FILE *f = fopen(p, "wb");
     
     if(f) {
         fwrite(buf, sizeof(unsigned char), i, f);
@@ -302,7 +303,7 @@ int main(int argc, char *argv[]) {
     
     init();
     
-    if(save(1)) {
+    if(save(argv[1], 1)) {
         printf("Insufficient file privileges");
         return 403;
     }
@@ -339,7 +340,7 @@ int main(int argc, char *argv[]) {
                 draw(0, 0);
                 break;
             case 's':
-                save(0);
+                save(argv[1], 0);
                 draw(0, 0);
                 break;
             case 'r':
