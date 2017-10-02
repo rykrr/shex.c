@@ -365,22 +365,24 @@ int main(int argc, char *argv[]) {
                 stat(argv[1]);
                 break;
             default:
-                if('0' <= c && c <= '9') {
-                    IX[cur]->hex &= (xmode?0xF0:0x0F);
-                    IX[cur]->hex |= (c-'0')<<(xmode++?0:4);
-                    modi++;
+                if(len) {
+                    if('0' <= c && c <= '9') {
+                        IX[cur]->hex &= (xmode?0xF0:0x0F);
+                        IX[cur]->hex |= (c-'0')<<(xmode++?0:4);
+                        modi++;
+                    }
+                    else if('A' <= c && c <= 'F') {
+                        IX[cur]->hex &= (xmode?0xF0:0x0F);
+                        IX[cur]->hex |= (c-'A'+10)<<(xmode++?0:4);
+                        modi++;
+                    }
+                    else if('a' <= c && c <= 'f') {
+                        IX[cur]->hex &= (xmode?0xF0:0x0F);
+                        IX[cur]->hex |= (c-'a'+10)<<(xmode++?0:4);
+                        modi++;
+                    }
+                    draw(0, 0);
                 }
-                else if('A' <= c && c <= 'F') {
-                    IX[cur]->hex &= (xmode?0xF0:0x0F);
-                    IX[cur]->hex |= (c-'A'+10)<<(xmode++?0:4);
-                    modi++;
-                }
-                else if('a' <= c && c <= 'f') {
-                    IX[cur]->hex &= (xmode?0xF0:0x0F);
-                    IX[cur]->hex |= (c-'a'+10)<<(xmode++?0:4);
-                    modi++;
-                }
-                draw(0, 0);
         }
         xmode %= 2;
         
