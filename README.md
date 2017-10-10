@@ -1,7 +1,7 @@
 # shex.c
 A Simple Ncurses Hex Editor
 
-![alt text](http)
+![screenshot](https://github.com/rykrr/shex.c/blob/master/screenshot.png?raw=true)
 
 ## Usage
 shexc (file)
