@@ -10,6 +10,9 @@ shexc (file)
 |-----------|-------------------------------------------|
 |  h,j,k,l  | Cursor Left, Down, Up, Right              |
 |  0-9,A-F  | HEX Values                                |
+|  n        | New next node                             |
+|  i        | Insert prev node                          |
+|  d        | Delete current node                       |
 |  s        | Save                                      |
 |  q        | Quit                                      |
 
