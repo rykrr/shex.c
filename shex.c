@@ -102,6 +102,14 @@ void new(HEX *h, int fb, int v) {
         return;
     }
     
+    if(fb && !h->prev) {
+        TOP = malloc(sizeof(HEX));
+        *TOP = (HEX){v, NULL, h};
+        h->prev = TOP;
+        reindex();
+        return;
+    }
+    
     HEX *x = (fb?h->prev:h->next);
     
     HEX *n = malloc(sizeof(HEX));
@@ -337,6 +345,10 @@ int main(int argc, char *argv[]) {
                 break;
             case 'n':
                 new(IX[cur], 0, 0);
+                draw(0, 0);
+                break;
+            case 'i':
+                new(IX[cur], 1, 0);
                 draw(0, 0);
                 break;
             case 's':
