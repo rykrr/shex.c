@@ -278,8 +278,10 @@ void draw(int o, int s) {
         for(int j=0; j<mod && mod*(i+off)+j<len; j++) {
             if(cur == (off+i)*mod+j)
                 attron(A_BOLD);
+            else if(IX[(off+i)*mod+j]->hex == 0)
+                attron(A_DIM);
             mvprintw(i, mid+(3*j), "%02X", IX[(off+i)*mod+j]->hex);
-            attroff(A_BOLD);
+            attroff(A_BOLD|A_DIM);
         }
     }
     
@@ -321,8 +323,6 @@ int main(int argc, char *argv[]) {
     stat(argv[1]);
     getch();
     
-    char c;
-    int off = 0;
     int xmode = 0;
     int modi = 0;
     int quit = 0;
