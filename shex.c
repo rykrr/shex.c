@@ -278,9 +278,14 @@ void draw(int o, int s) {
         for(int j=0; j<mod && mod*(i+off)+j<len; j++) {
             if(cur == (off+i)*mod+j)
                 attron(A_BOLD);
-            else if(IX[(off+i)*mod+j]->hex == 0)
+            else if(!IX[(off+i)*mod+j]->hex)
                 attron(A_DIM);
-            mvprintw(i, mid+(3*j), "%02X", IX[(off+i)*mod+j]->hex);
+            
+            if(!IX[(off+i)*mod+j]->hex)
+                mvprintw(i, mid+(3*j), "--");
+            else
+                mvprintw(i, mid+(3*j), "%02X", IX[(off+i)*mod+j]->hex);
+            
             attroff(A_BOLD|A_DIM);
         }
     }
