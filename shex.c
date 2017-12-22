@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <ncurses.h>
 
 #define HEXLIM 65536*2
@@ -309,6 +310,7 @@ int main(int argc, char *argv[]) {
     printf("shex.c: Simple Hex Editor\nCopyright (c) 2017 Ryan Kerr\n");
     
     setbuf(stdout, NULL);
+    signal(SIGINT, delall);
     reindex();
     
     if(argc == 2)
