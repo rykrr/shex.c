@@ -85,6 +85,11 @@ void delall() {
         del(TOP);
 }
 
+void fin() {
+    delall();
+    exit(0);
+}
+
 void new(HEX *h, int fb, int v) {
     
     if(len == HEXLIM)
@@ -299,7 +304,6 @@ void draw(int o, int s) {
     if(len) {
         attron(A_BOLD);
         mvprintw(row, mid+3*(cur%mod)-1, "[");
-        mvprintw(row, mid+3*(cur%mod)-1, "[");
         mvprintw(row, mid+3*(cur%mod)+2, "]");
         attroff(A_BOLD);
     }
@@ -310,7 +314,7 @@ int main(int argc, char *argv[]) {
     printf("shex.c: Simple Hex Editor\nCopyright (c) 2017 Ryan Kerr\n");
     
     setbuf(stdout, NULL);
-    signal(SIGINT, delall);
+    signal(SIGINT, fin);
     reindex();
     
     if(argc == 2)
