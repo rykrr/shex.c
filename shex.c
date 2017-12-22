@@ -368,7 +368,7 @@ int main(int argc, char *argv[]) {
                 break;
             case 'g':
                 if(len)
-                    cur = 0;
+                    cur = row = 0;
                 draw(0, 0);
                 break;
             case 'q':
