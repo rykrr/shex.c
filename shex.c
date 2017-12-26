@@ -16,7 +16,7 @@ typedef struct hex {
 HEX *TOP = NULL;
 HEX *IX[HEXLIM];
 
-int len = 0, cur = -1, row = 0;
+int len = 0, cur = -1, row = 0, rst = 0;
 
 void stat(const char *s) {
     attron(A_REVERSE);
@@ -213,14 +213,16 @@ void draw(int o, int s) {
     if(!oll)
         oll = len;
     
+    if(rst)
+        rst = off = 0;
+    
     int dx, mx, my, mod, mid;
     getmaxyx(stdscr, my ,mx);
     
     my--;
     //mod = (mx/6)-2;
-    mod = 32;
-    mid = (mx-mod)/2;
-    mod = 12;
+    mod = 16;
+    mid = (mx/2) - (mod+8);
     dx  = len/mod + (len%mod?1:0);
     
     for(int i=0; i<my; i++)
@@ -298,7 +300,7 @@ void draw(int o, int s) {
     
     oll=len;
     
-    mvprintw(row, mid-(mod-3), "[[");
+    mvprintw(row, mid-(mod/2)-1, "[[");
     mvprintw(row, mid+(3*(mod+2)), "]]");
     
     if(len) {
@@ -371,8 +373,10 @@ int main(int argc, char *argv[]) {
                 draw(0, 0);
                 break;
             case 'g':
-                if(len)
+                if(len) {
                     cur = row = 0;
+                    rst = 1;
+                }
                 draw(0, 0);
                 break;
             case 'q':
